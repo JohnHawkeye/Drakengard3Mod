@@ -97,11 +97,9 @@ Mods.Drakengard3Mod: {
 			Tooltip: "5枚集めてデーモンアルターで召喚アイテムをつくれる。"
 		}
 
-		Summons:{
-			GabriellaEgg: {
-				DisplayName: "ガブリエラの卵"
-				Tooltip: "ガブリエラを召喚できる。\n私は龍種よ！舐めてもらっては困るわ！"
-			}
+		GabriellaEgg: {
+			DisplayName: "ガブリエラの卵"
+			Tooltip: "ガブリエラを召喚できる。\n私は龍種よ！舐めてもらっては困るわ！"
 		}
 
 	}

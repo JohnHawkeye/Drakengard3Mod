@@ -55,8 +55,8 @@ namespace Drakengard3Mod.Projectiles.Minions
             }
 
             // プレイヤー追従
-            Vector2 idlePosition = player.Center + 
-                new Vector2(80f*player.direction, -80f);
+            Vector2 idlePosition = player.Center +
+                new Vector2(-80f * player.direction, -80f);
 
             Vector2 toIdle = idlePosition - Projectile.Center;
             float distance = toIdle.Length();
@@ -85,7 +85,7 @@ namespace Drakengard3Mod.Projectiles.Minions
             UpdateAnimation();
 
             // 攻撃
-            AttackEnemy();
+            AttackEnemy(player);
         }
 
         private void UpdateAnimation()
@@ -109,13 +109,16 @@ namespace Drakengard3Mod.Projectiles.Minions
             }
         }
 
-        private void AttackEnemy()
+        private void AttackEnemy(Player player)
         {
             NPC target = FindTarget();
+
 
             if (target == null)
             {
                 attackTimer = 0;
+
+                Projectile.spriteDirection = -player.direction;
                 return;
             }
 
@@ -134,8 +137,9 @@ namespace Drakengard3Mod.Projectiles.Minions
                 velocity *= 18f;
 
                 attackAnimationTimer = 10;
-
-                SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot,Projectile.Center);
+                Speak();
+                
+                SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot, Projectile.Center);
 
                 Projectile.NewProjectile(
                     Projectile.GetSource_FromThis(),
@@ -169,5 +173,32 @@ namespace Drakengard3Mod.Projectiles.Minions
 
             return target;
         }
+
+        private void Speak()
+        {
+            // 6回に1回だけ喋る
+            if (!Main.rand.NextBool(6))
+                return;
+
+            string[] messages =
+            {
+                "うざったいわね！",
+                "燃え尽きなさい！",
+                "ブス、ブス、ぶぅーす！"
+            };
+
+            string text = messages[Main.rand.Next(messages.Length)];
+
+            CombatText.NewText(
+                new Rectangle(
+                    (int)Projectile.Center.X - 20,
+                    (int)Projectile.Center.Y - 60,
+                    40,
+                    20),
+                new Color(200, 80, 255),
+                text,
+                dramatic: false);
+        }
+
     }
 }
