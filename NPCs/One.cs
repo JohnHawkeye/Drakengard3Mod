@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Drakengard3Mod.Items;
 using Drakengard3Mod.Items.Armor;
-
+//test
 namespace Drakengard3Mod.NPCs
 {
     [AutoloadHead]
