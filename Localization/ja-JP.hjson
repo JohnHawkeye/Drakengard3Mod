@@ -14,6 +14,11 @@ Mods.Drakengard3Mod: {
 			DisplayName: "ワン姉さん"
 			Description: "いつでもいっしょ。"
 		}
+
+		GabriellaBuff: {
+			DisplayName: "ガブリエラ召喚"
+			Description: "ともにガブリエラが戦ってくれる。"
+		}
 	}
 
 	Items: {
@@ -91,6 +96,14 @@ Mods.Drakengard3Mod: {
 			DisplayName: "呪いの花びら"
 			Tooltip: "5枚集めてデーモンアルターで召喚アイテムをつくれる。"
 		}
+
+		Summons:{
+			GabriellaEgg: {
+				DisplayName: "ガブリエラの卵"
+				Tooltip: "ガブリエラを召喚できる。\n私は龍種よ！舐めてもらっては困るわ！"
+			}
+		}
+
 	}
 
 	NPCs: {

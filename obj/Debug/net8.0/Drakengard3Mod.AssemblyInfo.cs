@@ -13,12 +13,10 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Drakengard3Mod")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d7ad203179f61cd943f15b2c0e0ac356dd7f905e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Drakengard3Mod")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Drakengard3Mod")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // MSBuild WriteCodeFragment クラスによって生成されました。
-
-namespace Drakengard3Mod.GlobalNPCs.Sysems.obj.Debug.net8_0;
 

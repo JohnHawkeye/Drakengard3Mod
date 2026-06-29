@@ -13,6 +13,11 @@ Buffs: {
 		DisplayName: One Buff
 		Description: Mods.Drakengard3Mod.Buffs.OneBuff.Description
 	}
+
+	GabriellaBuff: {
+		DisplayName: Gabriella Buff
+		Description: Mods.Drakengard3Mod.Buffs.GabriellaBuff.Description
+	}
 }
 
 Items: {
@@ -90,6 +95,11 @@ Items: {
 		DisplayName: Zero Petal
 		Tooltip: ""
 	}
+
+	GabriellaEgg: {
+		DisplayName: Gabriella Egg
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -118,4 +128,6 @@ Projectiles: {
 	OneMinion.DisplayName: One Minion
 	OneRingProjectile.DisplayName: One Ring Projectile
 	ZeroSlashProjectile.DisplayName: Zero Slash Projectile
+	GabriellaBreath.DisplayName: Gabriella Breath
+	GabriellaMinion.DisplayName: Gabriella Minion
 }

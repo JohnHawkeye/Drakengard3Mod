@@ -40,6 +40,10 @@
     "Content\\Items\\OnesChakram.cs": "Drakengard3Mod.Content.Items",
     "Buffs\\OneBuff.cs": "Drakengard3Mod.Buffs",
     "Buffs\\AngelProtectionCooldown.cs": "Drakengard3Mod.Buffs",
-    "Buffs\\AngelProtectionBuff.cs": "Drakengard3Mod.Buffs"
+    "Buffs\\AngelProtectionBuff.cs": "Drakengard3Mod.Buffs",
+    "Items\\Summons\\GabriellaEgg.cs": "Drakengard3Mod.Items.Summons",
+    "Projectiles\\Minions\\GabriellaMinion.cs": "Drakengard3Mod.Projectiles.Minions",
+    "Buffs\\GabriellaBuff.cs": "Drakengard3Mod.Buffs",
+    "Projectiles\\GabriellaBreath.cs": "Drakengard3Mod.Projectiles"
   }
 }
