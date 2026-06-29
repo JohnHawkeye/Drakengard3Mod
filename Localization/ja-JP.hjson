@@ -1,0 +1,123 @@
+Mods.Drakengard3Mod: {
+	Buffs: {
+		AngelProtectionBuff: {
+			DisplayName: "天使の加護"
+			Description: "ダメージを1にする"
+		}
+
+		AngelProtectionCooldown: {
+			DisplayName: "気狂い"
+			Description: "これ以上飲んだら変になる"
+		}
+
+		OneBuff: {
+			DisplayName: "ワン姉さん"
+			Description: "いつでもいっしょ。"
+		}
+	}
+
+	Items: {
+		OnesChakram: {
+			DisplayName: "ワンの戦輪"
+			Tooltip: "姉さんの武器と言ったらこれ"
+		}
+
+		AngelProtectionPotion: {
+			DisplayName: "天使の加護ポーション"
+			Tooltip: "飲めば1分間ダメージ1になるが\n連続して飲めない"
+		}
+
+		OneCosABoots: {
+			DisplayName: "ワン姉さんのブーツ：タイプA"
+			Tooltip: "ワン姉さんのなりきりブーツ。タイプA"
+		}
+
+		OneCosACoat: {
+			DisplayName: "ワン姉さんのクローク：タイプA"
+			Tooltip: "ワン姉さんのなりきりクローク。タイプA"
+		}
+
+		OneCosAWig: {
+			DisplayName: "ワン姉さんのウィッグ：タイプA"
+			Tooltip: "ワン姉さんのなりきりウィッグ。タイプA"
+		}
+
+		OneCosBBoots: {
+			DisplayName: "ワン姉さんのブーツ：タイプB"
+			Tooltip: "ワン姉さんのなりきりブーツ。タイプB"
+		}
+
+		OneCosBCoat: {
+			DisplayName: "ワン姉さんのクローク：タイプB"
+			Tooltip: "ワン姉さんのなりきりクローク。タイプB"
+		}
+
+		OneCosBWig: {
+			DisplayName: "ワン姉さんのウィッグ：タイプB"
+			Tooltip: "ワン姉さんのなりきりウィッグ。タイプB"
+		}
+
+		AtonementRag: {
+			DisplayName: "懺悔の雑巾"
+			Tooltip: "これで罪を隠そうというのか。"
+		}
+
+		OneChakramItem: {
+			DisplayName: "ワンの戦輪"
+			Tooltip: "姉さんの武器と言ったらこれ"
+		}
+
+		OneEarring: {
+			DisplayName: "ワン姉さんのイヤリング"
+			Tooltip: "ワン姉さんと一緒に冒険が出来る。"
+		}
+
+		ReincarnationSoul: {
+			DisplayName: "輪廻の魂"
+			Tooltip: "生まれ変わる前の魂。\n色んな用途に使う。"
+		}
+
+		SoulCalibur: {
+			DisplayName: "ソウルキャリバー"
+			Tooltip: "左クリックで通常攻撃。\n右クリックで輪廻の魂を使用して3倍のダメージを与える。"
+		}
+
+		ZeroFlower: {
+			DisplayName: "ゼロの花"
+			Tooltip: "すべてはこれから始まった。\n使用してゼロと戦おう。"
+		}
+
+		ZeroPetal: {
+			DisplayName: "呪いの花びら"
+			Tooltip: "5枚集めてデーモンアルターで召喚アイテムをつくれる。"
+		}
+	}
+
+	NPCs: {
+		ZeroBoss.DisplayName: "ゼロ"
+
+		One: {
+			DisplayName: "ワン姉さん"
+
+			TownNPCMood: {
+				Content: 君がいないと不安になる。
+				NoHome: 家があると安心する。
+				FarFromHome: 家から遠すぎる。
+				LoveSpace: 充分なスペースが あるのがいいね。
+				DislikeCrowded: 静かなのが好き。
+				HateCrowded: 騒々しいのは嫌いだ。
+				LikeNPC_Princess: I like {NPCName}.
+				Princess_LovesNPC: I like {NPCName}.
+			}
+
+			Census.SpawnCondition: Conditions unknown
+		}
+	}
+
+	Projectiles: {
+		OneChakram.DisplayName: One Chakram
+		OneMinion.DisplayName: One Minion
+		OneRingProjectile.DisplayName: One Ring Projectile
+		ZeroSlashProjectile.DisplayName: Zero Slash Projectile
+	}
+}

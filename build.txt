@@ -1,0 +1,3 @@
+displayName = Drakengard3Mod
+author = Onedafull
+version = 0.1

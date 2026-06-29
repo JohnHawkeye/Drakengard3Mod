@@ -1,0 +1,121 @@
+Buffs: {
+	AngelProtectionBuff: {
+		DisplayName: Angel Protection Buff
+		Description: Mods.Drakengard3Mod.Buffs.AngelProtectionBuff.Description
+	}
+
+	AngelProtectionCooldown: {
+		DisplayName: Angel Protection Cooldown
+		Description: Mods.Drakengard3Mod.Buffs.AngelProtectionCooldown.Description
+	}
+
+	OneBuff: {
+		DisplayName: One Buff
+		Description: Mods.Drakengard3Mod.Buffs.OneBuff.Description
+	}
+}
+
+Items: {
+	OnesChakram: {
+		DisplayName: Ones Chakram
+		Tooltip: ""
+	}
+
+	AngelProtectionPotion: {
+		DisplayName: Angel Protection Potion
+		Tooltip: ""
+	}
+
+	OneCosABoots: {
+		DisplayName: One Cos A Boots
+		Tooltip: ""
+	}
+
+	OneCosACoat: {
+		DisplayName: One Cos A Coat
+		Tooltip: ""
+	}
+
+	OneCosAWig: {
+		DisplayName: One Cos A Wig
+		Tooltip: ""
+	}
+
+	OneCosBBoots: {
+		DisplayName: One Cos B Boots
+		Tooltip: ""
+	}
+
+	OneCosBCoat: {
+		DisplayName: One Cos B Coat
+		Tooltip: ""
+	}
+
+	OneCosBWig: {
+		DisplayName: One Cos B Wig
+		Tooltip: ""
+	}
+
+	AtonementRag: {
+		DisplayName: Atonement Rag
+		Tooltip: ""
+	}
+
+	OneChakramItem: {
+		DisplayName: One Chakram Item
+		Tooltip: ""
+	}
+
+	OneEarring: {
+		DisplayName: One Earring
+		Tooltip: ""
+	}
+
+	ReincarnationSoul: {
+		DisplayName: Reincarnation Soul
+		Tooltip: ""
+	}
+
+	SoulCalibur: {
+		DisplayName: Soul Calibur
+		Tooltip: ""
+	}
+
+	ZeroFlower: {
+		DisplayName: Zero Flower
+		Tooltip: ""
+	}
+
+	ZeroPetal: {
+		DisplayName: Zero Petal
+		Tooltip: ""
+	}
+}
+
+NPCs: {
+	ZeroBoss.DisplayName: Zero Boss
+
+	One: {
+		DisplayName: One
+
+		TownNPCMood: {
+			Content: 私は満足しています。
+			NoHome: 家を持っていないのが 嫌なんです。
+			FarFromHome: 家から遠すぎる。
+			LoveSpace: 充分なスペースが あるのがいいね。
+			DislikeCrowded: 人混みが嫌いです。
+			HateCrowded: こんなに混んでいるのは 嫌だよ。
+			LikeNPC_Princess: I like {NPCName}.
+			Princess_LovesNPC: I like {NPCName}.
+		}
+
+		Census.SpawnCondition: Conditions unknown
+	}
+}
+
+Projectiles: {
+	OneChakram.DisplayName: One Chakram
+	OneMinion.DisplayName: One Minion
+	OneRingProjectile.DisplayName: One Ring Projectile
+	ZeroSlashProjectile.DisplayName: Zero Slash Projectile
+}
