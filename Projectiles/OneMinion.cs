@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -12,7 +13,12 @@ namespace Drakengard3Mod.Projectiles
         private const float JumpSpeed = -6f;
         private int attackCooldown = 0;
         private const int AttackDelay = 60;
-        private bool hitWall = false;
+
+        private int repositionTimer = 0;
+        private int desiredSide = 1;
+        private int retreatTimer = 0;
+
+        private int talkCooldown = 0;
 
         private enum ActionState
         {
@@ -66,8 +72,21 @@ namespace Drakengard3Mod.Projectiles
             NPC targetNPC = FindClosestEnemy(500f);
             bool hasTarget = targetNPC != null && targetNPC.active && !targetNPC.friendly;
 
+            if (repositionTimer > 0)
+                repositionTimer--;
+
             if (attackCooldown > 0)
                 attackCooldown--;
+
+            if (repositionTimer == 0)
+            {
+                desiredSide = Main.rand.NextBool() ? 1 : -1;
+                repositionTimer = Main.rand.Next(90, 180);
+            }
+
+            //トーク用のクールダウン
+            if (talkCooldown > 0)
+                talkCooldown--;
 
             // 状態決定
             if (hasTarget)
@@ -98,31 +117,48 @@ namespace Drakengard3Mod.Projectiles
                 Projectile.timeLeft = 2;
             }
 
-            Vector2 targetPos = player.Center + new Vector2(-60 * player.direction, 0);
+
+            Vector2 targetPos = player.Center + new Vector2(-player.direction * 50f, -4f);
 
             float distanceToPlayer = Vector2.Distance(Projectile.Center, targetPos);
 
-            //------------------------------------
-            // 追従停止（敵がいれば止まる準備）
-            //------------------------------------
             if (state == ActionState.Attack)
             {
-                Projectile.velocity.X *= 0.8f;
+                float distance = Vector2.Distance(
+                    Projectile.Center,
+                    targetNPC.Center);
 
                 Projectile.direction =
                     Projectile.spriteDirection =
-                    (targetNPC.Center.X > Projectile.Center.X) ? 1 : -1;
+                    targetNPC.Center.X > Projectile.Center.X ? 1 : -1;
 
-                if (!ringActive && attackCooldown == 0)
+                if (distance > 64f)
                 {
-                    TryAttack(targetNPC);
+                    // 敵へ歩く
+                    MoveToEnemy(targetNPC);
                 }
+                else
+                {
+                    // 停止
+                    Projectile.velocity.X *= 0.8f;
 
+                    if (!ringActive && attackCooldown == 0)
+                    {
+                        TryAttack(targetNPC);
+                    }
+                }
             }
             else
             {
                 MoveToPlayer(player, targetPos);
+
+                if (talkCooldown == 0)
+                {
+                    Talk("モンスターがいるぞ。気を付けろ。", Color.Yellow, 600);
+                }
             }
+
+            HandleJump(hasTarget ? targetNPC : null);
 
             //------------------------------------
             // 重力
@@ -144,18 +180,19 @@ namespace Drakengard3Mod.Projectiles
             Animate();
         }
 
+
         //====================================
         // プレイヤー追従移動
         //====================================
         private void MoveToPlayer(Player player, Vector2 targetPos)
         {
             float distance = Vector2.Distance(Projectile.Center, targetPos);
+            const float TeleportDistance = 400f;
 
             // ワープ
-            if (distance > 900f)
+            if (distance > TeleportDistance)
             {
-                Projectile.Center = targetPos;
-                Projectile.velocity = Vector2.Zero;
+                TeleportToPlayer(player);
                 return;
             }
 
@@ -187,61 +224,164 @@ namespace Drakengard3Mod.Projectiles
                 Projectile.direction = -1;
 
             Projectile.spriteDirection = Projectile.direction;
-            //----------------------------------
-            // 段差を登る
-            //----------------------------------
 
-            if (Math.Abs(Projectile.velocity.Y) < 0.01f &&
-                CanStepUp())
-            {
-                Projectile.position.Y -= 16f;
-            }
-            //----------------------------------
-            // 壁ジャンプ
-            //----------------------------------
-
-            if (hitWall)
-            {
-                hitWall = false;
-                if (!CanStepUp())
-                {
-                    Projectile.velocity.Y = JumpSpeed;
-                }
-
-            }
         }
-        //====================================
-        // 1マス段差を登れるか
-        //====================================
+        private void TeleportToPlayer(Player player)
+        {
+            Vector2 pos = new Vector2(
+                player.Center.X - player.direction * 50f,
+                player.Bottom.Y - Projectile.height);
+
+            while (Collision.SolidCollision(pos, Projectile.width, Projectile.height))
+            {
+                pos.Y -= 16f;
+            }
+
+            Projectile.position = pos;
+            Projectile.velocity = Vector2.Zero;
+        }
         private bool CanStepUp()
         {
             int dir = Projectile.direction;
 
-            // 足元のタイル
-            Point foot = new Point(
-                (int)((Projectile.Center.X + dir * 18) / 16),
-                (int)((Projectile.Bottom.Y) / 16));
+            int x = (int)((Projectile.Center.X + dir * 18f) / 16);
+            int y = (int)((Projectile.Bottom.Y - 2) / 16);
 
-            // 足元の一つ上
-            Point upper = new Point(
-                foot.X,
-                foot.Y - 1);
+            Tile front = Main.tile[x, y];
+            Tile upper = Main.tile[x, y - 1];
 
-            Tile footTile = Main.tile[foot.X, foot.Y];
-            Tile upperTile = Main.tile[upper.X, upper.Y];
+            if (front == null || upper == null)
+                return false;
 
-            bool lowerSolid =
-                footTile != null &&
-                footTile.HasTile &&
-                Main.tileSolid[footTile.TileType];
+            bool frontSolid =
+                front.HasTile &&
+                Main.tileSolid[front.TileType];
 
             bool upperEmpty =
-                upperTile == null ||
-                !upperTile.HasTile ||
-                !Main.tileSolid[upperTile.TileType];
+                !upper.HasTile ||
+                !Main.tileSolid[upper.TileType];
 
-            return lowerSolid && upperEmpty;
+            return frontSolid && upperEmpty;
         }
+
+        //====================================
+        // 前方に地面があるか
+        //====================================
+        private bool HasGroundAhead()
+        {
+            int dir = Projectile.direction;
+
+            int x = (int)((Projectile.Center.X + dir * (Projectile.width / 2 + 8)) / 16);
+            int y = (int)((Projectile.Bottom.Y + 16f) / 16);
+
+            Tile tile = Main.tile[x, y];
+
+            return tile != null &&
+                   tile.HasTile &&
+                   Main.tileSolid[tile.TileType];
+        }
+
+        private bool HasWallAhead()
+        {
+            int dir = Projectile.direction;
+
+            // 前方の胴体付近を調べる
+            int x = (int)((Projectile.Center.X + dir * 18f) / 16);
+            int y = (int)((Projectile.Center.Y) / 16);
+
+            Tile tile = Main.tile[x, y];
+
+            return tile != null &&
+                   tile.HasTile &&
+                   Main.tileSolid[tile.TileType];
+
+        }
+
+        //====================================
+        // 敵へ接近
+        //====================================
+        private void MoveToEnemy(NPC target)
+        {
+            if (retreatTimer > 0)
+            {
+                retreatTimer--;
+
+                Projectile.velocity.X =
+                    -Projectile.direction * 1.2f;
+
+                return;
+            }
+
+            Vector2 targetPos = target.Center + new Vector2(desiredSide * 64f, 0);
+
+            // 左右移動
+            if (targetPos.X > Projectile.Center.X + 64f)
+            {
+                Projectile.velocity.X += 0.12f;
+            }
+            else if (targetPos.X < Projectile.Center.X - 64f)
+            {
+                Projectile.velocity.X -= 0.12f;
+            }
+            else
+            {
+                Projectile.velocity.X *= 0.9f;
+            }
+
+            Projectile.velocity.X = MathHelper.Clamp(
+                Projectile.velocity.X,
+                -WalkSpeed,
+                WalkSpeed);
+
+            if (Projectile.velocity.X > 0.1f)
+                Projectile.direction = 1;
+            else if (Projectile.velocity.X < -0.1f)
+                Projectile.direction = -1;
+
+            Projectile.spriteDirection = Projectile.direction;
+        }
+
+        private void HandleJump(NPC target)
+        {
+            if (Projectile.velocity.Y != 0)
+                return;
+            // 空中なら何もしない
+            if (!IsGrounded())
+                return;
+
+            // if (CanStepUp())
+            // {
+            //     Projectile.position.Y = -4f;
+            //     return;
+            // }
+
+            // 2マス以上の壁
+            if (HasWallAhead())
+            {
+                Projectile.velocity.Y = JumpSpeed;
+
+            }
+
+            // 穴
+            if (!HasGroundAhead())
+            {
+                Projectile.velocity.Y = JumpSpeed;
+                return;
+            }
+
+            // 敵がかなり高い位置
+            if (target != null &&
+                target.Center.Y < Projectile.Center.Y - 48f)
+            {
+                Projectile.velocity.Y = JumpSpeed;
+            }
+        }
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            // タイルに当たっても消えない
+            return false;
+        }
+
         //====================================
         // 敵検索（簡易）
         //====================================
@@ -259,7 +399,15 @@ namespace Drakengard3Mod.Projectiles
 
                 float d = Vector2.Distance(Projectile.Center, npc.Center);
 
-                if (d < dist)
+                if (d < dist &&
+                    Collision.CanHit(
+                        Projectile.position,
+                        Projectile.width,
+                        Projectile.height,
+                        npc.position,
+                        npc.width,
+                        npc.height
+                    ))
                 {
                     dist = d;
                     closest = npc;
@@ -287,6 +435,8 @@ namespace Drakengard3Mod.Projectiles
                 2f,
                 Projectile.owner
             );
+
+            retreatTimer = 20;
 
             //軽い演出
 
@@ -349,15 +499,25 @@ namespace Drakengard3Mod.Projectiles
             }
         }
 
-        public override bool OnTileCollide(Vector2 oldVelocity)
+        private bool IsGrounded()
         {
-            if (oldVelocity.X != Projectile.velocity.X)
-            {
-                hitWall = true;
-            }
+            return Projectile.velocity.Y == 0;
+        }
 
-            // 壁に当たっても消えない
-            return false;
+        private void Talk(string text, Color color, int cooldown = 180)
+        {
+            if (talkCooldown > 0)
+                return;
+
+            Rectangle rect = new Rectangle(
+                (int)Projectile.Center.X,
+                (int)Projectile.Top.Y - 24,
+                1,
+                1);
+
+            CombatText.NewText(rect, color, text);
+
+            talkCooldown = cooldown;
         }
     }
 }

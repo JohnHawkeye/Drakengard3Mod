@@ -1,3 +1,4 @@
+using Drakengard3Mod.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -51,6 +52,12 @@ namespace Drakengard3Mod.Items
             int damage,
             float knockback)
         {
+
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<OneMinion>()] > 0)
+            {
+                return false;
+            }
+            
             player.AddBuff(Item.buffType, 2);
 
             if (player.whoAmI == Main.myPlayer)
