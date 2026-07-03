@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace Drakengard3Mod.Projectiles
 {
@@ -14,6 +15,8 @@ namespace Drakengard3Mod.Projectiles
         {
             Projectile.width = 20;
             Projectile.height = 20;
+
+            Projectile.scale = 1f;
 
             Projectile.friendly = true;
             Projectile.hostile = false;
@@ -67,15 +70,24 @@ namespace Drakengard3Mod.Projectiles
             // ============================
             else
             {
+                float breath =
+                    (float)System.Math.Sin(Main.GameUpdateCount * 0.10f) * 0.08f;
+
+                float pulse =
+                    0.85f + 0.15f *
+                    (float)System.Math.Sin(Main.GameUpdateCount * 0.10f);
+
+                Projectile.scale = 1.5f + breath;
+
                 Projectile.velocity = Vector2.Zero;
 
                 Projectile.rotation = 0f;
 
                 Lighting.AddLight(
                     Projectile.Center,
-                    0.8f,
-                    0.2f,
-                    1.0f);
+                    0.8f * pulse,
+                    0.2f * pulse,
+                    1.1f * pulse);
 
                 if (Main.rand.NextBool())
                 {
@@ -92,6 +104,20 @@ namespace Drakengard3Mod.Projectiles
 
                 Lighting.AddLight(Projectile.Center, 0.8f, 0.2f, 1.1f);
 
+                if (Projectile.timeLeft < 30)
+                {
+                    float progress = 1f - Projectile.timeLeft / 30f;
+
+                    Projectile.scale = MathHelper.Lerp(
+                        1.5f,
+                        2.0f,
+                        progress);
+
+                    Projectile.alpha = (int)MathHelper.Lerp(
+                        0,
+                        255,
+                        progress);
+                }
                 damageTimer++;
             }
         }
@@ -117,6 +143,7 @@ namespace Drakengard3Mod.Projectiles
                 }
 
                 Projectile.ai[0] = 1;
+                Projectile.scale = 1.5f;
                 Projectile.velocity = Vector2.Zero;
                 Projectile.timeLeft = 300;
                 Projectile.netUpdate = true;
@@ -143,6 +170,26 @@ namespace Drakengard3Mod.Projectiles
             {
                 damageTimer = 0;
             }
+        }
+
+        public override void OnKill(int timeLeft)
+        {
+            for (int i = 0; i < 40; i++)
+            {
+                Dust dust = Dust.NewDustDirect(
+                    Projectile.position,
+                    Projectile.width,
+                    Projectile.height,
+                    DustID.Shadowflame);
+
+                dust.noGravity = true;
+                dust.scale = 2.3f;
+                dust.velocity *= 3f;
+            }
+
+            SoundEngine.PlaySound(
+                SoundID.Item74,
+                Projectile.Center);
         }
     }
 }

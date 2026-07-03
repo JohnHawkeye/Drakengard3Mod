@@ -19,6 +19,11 @@ Mods.Drakengard3Mod: {
 			DisplayName: "ガブリエラ召喚"
 			Description: "ともにガブリエラが戦ってくれる。"
 		}
+		
+		OneLoveBuff: {
+			DisplayName: "大好き姉さん"
+			Description: "そばにいると心が落ち着く。自然回復力アップ。"
+		}
 	}
 
 	Items: {
@@ -102,6 +107,14 @@ Mods.Drakengard3Mod: {
 			Tooltip: "ガブリエラを召喚できる。\n私は龍種よ！舐めてもらっては困るわ！"
 		}
 
+		EvilsAltar: {
+			DisplayName: "邪悪な祭壇"
+			Tooltip: "デーモンアルター、クリムゾンアルターとして使える祭壇を設置できる。"
+		}
+		BioBombItem: {
+			DisplayName: "バイオームボム"
+			Tooltip: "投げて当たった場所にバーオームにあったブロックを生成する爆弾。"
+		}
 	}
 
 	NPCs: {

@@ -18,6 +18,11 @@ Buffs: {
 		DisplayName: Gabriella Buff
 		Description: Mods.Drakengard3Mod.Buffs.GabriellaBuff.Description
 	}
+
+	OneLoveBuff: {
+		DisplayName: One Love Buff
+		Description: Mods.Drakengard3Mod.Buffs.OneLoveBuff.Description
+	}
 }
 
 Items: {
@@ -100,6 +105,16 @@ Items: {
 		DisplayName: Gabriella Egg
 		Tooltip: ""
 	}
+
+	EvilsAltar: {
+		DisplayName: Evils Altar
+		Tooltip: ""
+	}
+
+	BioBombItem: {
+		DisplayName: Bio Bomb Item
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -130,4 +145,8 @@ Projectiles: {
 	ZeroSlashProjectile.DisplayName: Zero Slash Projectile
 	GabriellaBreath.DisplayName: Gabriella Breath
 	GabriellaMinion.DisplayName: Gabriella Minion
+	LoveHeart.DisplayName: Love Heart
+	BioBombProjectile.DisplayName: Bio Bomb Projectile
 }
+
+Tiles.EvilsAltarTile.MapEntry: Evils Altar Tile

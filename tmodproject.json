@@ -44,6 +44,12 @@
     "Items\\Summons\\GabriellaEgg.cs": "Drakengard3Mod.Items.Summons",
     "Projectiles\\Minions\\GabriellaMinion.cs": "Drakengard3Mod.Projectiles.Minions",
     "Buffs\\GabriellaBuff.cs": "Drakengard3Mod.Buffs",
-    "Projectiles\\GabriellaBreath.cs": "Drakengard3Mod.Projectiles"
+    "Projectiles\\GabriellaBreath.cs": "Drakengard3Mod.Projectiles",
+    "Projectiles\\LoveHeart.cs": "Drakengard3Mod.Projectiles",
+    "Buffs\\OneLoveBuff.cs": "Drakengard3Mod.Buffs",
+    "Items\\EvilsAlter.cs": "Drakengard3Mod.Items",
+    "Tiles\\EvilsAltarTile.cs": "Drakengard3Mod.Tiles",
+    "Projectiles\\BioBombProjectile.cs": "Drakengard3Mod.Projectiles",
+    "Items\\BioBombItem.cs": "Drakengard3Mod.Items"
   }
 }

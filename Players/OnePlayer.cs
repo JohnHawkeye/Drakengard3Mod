@@ -17,5 +17,14 @@ namespace Drakengard3Mod.Players
         {
             oneMinion = false;
         }
+
+        public override void PostUpdate()
+        {
+            if (oneMinion)
+            {
+                Player.findTreasure = true;
+                Player.dangerSense = true;
+            }
+        }
     }
 }

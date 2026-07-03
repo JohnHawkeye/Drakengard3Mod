@@ -1,7 +1,9 @@
 using System;
 using System.Diagnostics;
+using Drakengard3Mod.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -118,7 +120,7 @@ namespace Drakengard3Mod.Projectiles
             }
 
 
-            Vector2 targetPos = player.Center + new Vector2(-player.direction * 50f, -4f);
+            Vector2 targetPos = player.Center + new Vector2(-player.direction * 24f, -4f);
 
             float distanceToPlayer = Vector2.Distance(Projectile.Center, targetPos);
 
@@ -178,6 +180,30 @@ namespace Drakengard3Mod.Projectiles
             Projectile.spriteDirection = Projectile.direction;
 
             Animate();
+
+            //ラブラブなはーとをだす
+            float xDist = Math.Abs(player.Center.X - Projectile.Center.X);
+            float yDist = Math.Abs(player.Center.Y - Projectile.Center.Y);
+
+            if (xDist < 48f && yDist < 24f)
+            {
+                if (Main.rand.NextBool(40)) // 約1秒に1回
+                {
+                    Vector2 pos = Projectile.Center +
+                        new Vector2(
+                            Main.rand.NextFloat(-8f,8f),
+                            -24f);
+
+                    Projectile.NewProjectile(
+                        Projectile.GetSource_FromThis(),
+                        pos,
+                        new Vector2(Main.rand.NextFloat(-1f,1f),
+                        -0.5f),
+                        ModContent.ProjectileType<LoveHeart>(),
+                        0,0f,Projectile.owner);
+                }
+                player.AddBuff(ModContent.BuffType<OneLoveBuff>(),2);
+            }
         }
 
 
@@ -421,19 +447,29 @@ namespace Drakengard3Mod.Projectiles
             attackCooldown = AttackDelay;
             ringActive = true;
 
-            Vector2 dir = target.Center - Projectile.Center;
+            Vector2 handPos = Projectile.Center +
+            new Vector2(Projectile.direction * 14f, -12f);
+
+            Vector2 aimPos = target.Center + target.velocity * 10f;
+
+            Vector2 dir = aimPos - handPos;
             dir.Normalize();
+
+            Projectile.direction =
+            target.Center.X > Projectile.Center.X ? 1 : -1;
+            Projectile.spriteDirection = Projectile.direction;
 
             float speed = 10f;
 
             Projectile.NewProjectile(
                 Projectile.GetSource_FromThis(),
-                Projectile.Center,
+                handPos,
                 dir * speed,
-                ModContent.ProjectileType<Projectiles.OneRingProjectile>(),
+                ModContent.ProjectileType<OneRingProjectile>(),
                 Projectile.damage,
                 2f,
-                Projectile.owner
+                Projectile.owner,
+                Projectile.whoAmI
             );
 
             retreatTimer = 20;

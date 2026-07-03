@@ -6,10 +6,10 @@ namespace Drakengard3Mod.Projectiles
 {
     public class OneRingProjectile : ModProjectile
     {
-        private const float Speed = 10f;
-        private const float ReturnSpeed = 12f;
+        private const float ReturnSpeed = 14f;
 
         private bool returning = false;
+        private int flyTimer = 0;
 
         public override void SetDefaults()
         {
@@ -28,51 +28,68 @@ namespace Drakengard3Mod.Projectiles
 
         public override void AI()
         {
-            Player player = Main.player[Projectile.owner];
+            Projectile.rotation += 0.7f;
 
-            Vector2 ownerCenter = player.Center;
+            flyTimer++;
 
-            Vector2 toOwner = ownerCenter - Projectile.Center;
-            float distance = toOwner.Length();
-
-            // 一定距離で帰還開始
-            if (distance > 220f)
+            // 約0.4秒飛んだら帰還開始
+            if (flyTimer >= 25)
                 returning = true;
 
-            if (returning)
+            int ownerIndex = (int)Projectile.ai[0];
+
+            if (ownerIndex < 0 || ownerIndex >= Main.maxProjectiles)
             {
-                toOwner.Normalize();
-                Projectile.velocity = toOwner * ReturnSpeed;
-
-                // プレイヤーに戻ったら消える
-                if (distance < 20f)
-                    Projectile.Kill();
-
+                Projectile.Kill();
                 return;
             }
 
-            Projectile.rotation += 0.4f;
+            Projectile one = Main.projectile[ownerIndex];
 
-            Projectile.velocity *= 0.98f;
+            if (!one.active)
+            {
+                Projectile.Kill();
+                return;
+            }
+
+            if (returning)
+            {
+                Vector2 targetPos = one.Center;
+
+                Vector2 dir = targetPos - Projectile.Center;
+
+                float distance = dir.Length();
+
+                if (distance < 20f)
+                {
+                    Projectile.Kill();
+                    return;
+                }
+
+                dir.Normalize();
+
+                Projectile.velocity = dir * ReturnSpeed;
+            }
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            returning = true;
+            Projectile.tileCollide = false;
+            return false;
         }
 
         public override void OnKill(int timeLeft)
         {
-            // ミニオン側に通知するため
-            foreach (Projectile proj in Main.projectile)
+            int ownerIndex = (int)Projectile.ai[0];
+
+            if (ownerIndex >= 0 &&
+                ownerIndex < Main.maxProjectiles)
             {
-                if(!proj.active)
-                    continue;
-                
-                if(proj.owner != Projectile.owner)
-                    continue;
+                Projectile proj = Main.projectile[ownerIndex];
 
-                if(proj.type != ModContent.ProjectileType<OneMinion>())
-                    continue;
-                
-                OneMinion minion = proj.ModProjectile as OneMinion;
-
-                if (minion != null)
+                if (proj.active &&
+                    proj.ModProjectile is OneMinion minion)
                 {
                     minion.RingReturned();
                 }
