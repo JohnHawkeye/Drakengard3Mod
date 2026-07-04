@@ -85,8 +85,8 @@ namespace Drakengard3Mod.NPCs
 
         public override void SetChatButtons(ref string button, ref string button2)
         {
-            button = "お買い物";
-            button2 = "交換";
+            button = "交換ショップ";
+            button2 = "ショップについて";
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref string shop)
@@ -97,30 +97,9 @@ namespace Drakengard3Mod.NPCs
             }
             else
             {
-                Player player = Main.LocalPlayer;
 
-                int soulType = ModContent.ItemType<ReincarnationSoul>();
-
-                if (player.CountItem(soulType) >= 10)
-                {
-                    for (int i = 0; i < 10; i++)
-                    {
-                        player.ConsumeItem(soulType);
-                    }
-
-                    player.QuickSpawnItem(
-                        player.GetSource_GiftOrReward(),
-                        ModContent.ItemType<AngelProtectionPotion>()
-                    );
-
-                    Main.npcChatText =
-                        "輪廻の魂10個と引き換えに天使の保護ポーションを渡そう。";
-                }
-                else
-                {
-                    Main.npcChatText =
-                        "輪廻の魂が10個必要だ。";
-                }
+                Main.npcChatText =
+                    "君がモンスターを倒すと輪廻の魂を手に入れられるはずだ。\nそれと見合った特別なアイテムと交換してあげよう。";
             }
         }
 
@@ -194,6 +173,11 @@ namespace Drakengard3Mod.NPCs
             npcShop.Add(new Item(ModContent.ItemType<AtonementRag>())
             {
                 shopCustomPrice = 10,
+                shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
+            });
+            npcShop.Add(new Item(ModContent.ItemType<AcoordPhone>())
+            {
+                shopCustomPrice = 50,
                 shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
             });
             npcShop.Register();

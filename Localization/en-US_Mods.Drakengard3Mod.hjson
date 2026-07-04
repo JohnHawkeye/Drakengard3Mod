@@ -117,6 +117,11 @@ Items: {
 		DisplayName: Bio Bomb Item
 		Tooltip: ""
 	}
+
+	AcoordPhone: {
+		DisplayName: Acoord Phone
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -124,6 +129,91 @@ NPCs: {
 
 	One: {
 		DisplayName: One
+
+		TownNPCMood: {
+			Content: 私は満足しています。
+			NoHome: 家を持っていないのが 嫌なんです。
+			FarFromHome: 家から遠すぎる。
+			LoveSpace: 充分なスペースが あるのがいいね。
+			DislikeCrowded: 人混みが嫌いです。
+			HateCrowded: こんなに混んでいるのは 嫌だよ。
+			LikeNPC_Princess: I like {NPCName}.
+			Princess_LovesNPC: I like {NPCName}.
+		}
+
+		Census.SpawnCondition: Conditions unknown
+	}
+
+	Acoord: {
+		DisplayName: Acoord
+
+		TownNPCMood: {
+			Content: 私は満足しています。
+			NoHome: 家を持っていないのが 嫌なんです。
+			FarFromHome: 家から遠すぎる。
+			LoveSpace: 充分なスペースが あるのがいいね。
+			DislikeCrowded: 人混みが嫌いです。
+			HateCrowded: こんなに混んでいるのは 嫌だよ。
+			LikeNPC_Princess: I like {NPCName}.
+			Princess_LovesNPC: I like {NPCName}.
+		}
+
+		Census.SpawnCondition: Conditions unknown
+	}
+
+	Five: {
+		DisplayName: Five
+
+		TownNPCMood: {
+			Content: 私は満足しています。
+			NoHome: 家を持っていないのが 嫌なんです。
+			FarFromHome: 家から遠すぎる。
+			LoveSpace: 充分なスペースが あるのがいいね。
+			DislikeCrowded: 人混みが嫌いです。
+			HateCrowded: こんなに混んでいるのは 嫌だよ。
+			LikeNPC_Princess: I like {NPCName}.
+			Princess_LovesNPC: I like {NPCName}.
+		}
+
+		Census.SpawnCondition: Conditions unknown
+	}
+
+	Foul: {
+		DisplayName: Foul
+
+		TownNPCMood: {
+			Content: 私は満足しています。
+			NoHome: 家を持っていないのが 嫌なんです。
+			FarFromHome: 家から遠すぎる。
+			LoveSpace: 充分なスペースが あるのがいいね。
+			DislikeCrowded: 人混みが嫌いです。
+			HateCrowded: こんなに混んでいるのは 嫌だよ。
+			LikeNPC_Princess: I like {NPCName}.
+			Princess_LovesNPC: I like {NPCName}.
+		}
+
+		Census.SpawnCondition: Conditions unknown
+	}
+
+	Three: {
+		DisplayName: Three
+
+		TownNPCMood: {
+			Content: 私は満足しています。
+			NoHome: 家を持っていないのが 嫌なんです。
+			FarFromHome: 家から遠すぎる。
+			LoveSpace: 充分なスペースが あるのがいいね。
+			DislikeCrowded: 人混みが嫌いです。
+			HateCrowded: こんなに混んでいるのは 嫌だよ。
+			LikeNPC_Princess: I like {NPCName}.
+			Princess_LovesNPC: I like {NPCName}.
+		}
+
+		Census.SpawnCondition: Conditions unknown
+	}
+
+	Two: {
+		DisplayName: Two
 
 		TownNPCMood: {
 			Content: 私は満足しています。

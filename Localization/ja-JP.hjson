@@ -74,6 +74,10 @@ Mods.Drakengard3Mod: {
 			DisplayName: "懺悔の雑巾"
 			Tooltip: "これで罪を隠そうというのか。"
 		}
+		AcoordPhone: {
+			DisplayName: "アコールの携帯電話"
+			Tooltip: "観測者アコールを呼び出せる携帯電話。"
+		}
 
 		OneChakramItem: {
 			DisplayName: "ワンの戦輪"
