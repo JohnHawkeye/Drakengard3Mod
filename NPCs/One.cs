@@ -4,6 +4,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Drakengard3Mod.Items;
 using Drakengard3Mod.Items.Armor;
+using Drakengard3Mod.Currencies;
+using Drakengard3Mod.Systems;
+using Drakengard3Mod.Items.Weapons;
+using Drakengard3Mod.Items.Summons;
 //test
 namespace Drakengard3Mod.NPCs
 {
@@ -21,7 +25,7 @@ namespace Drakengard3Mod.NPCs
             NPCID.Sets.AttackTime[Type] = 30;
             NPCID.Sets.AttackAverageChance[Type] = 10;
             NPCID.Sets.HatOffsetY[Type] = 4;
-            
+
         }
 
         public override void SetDefaults()
@@ -49,10 +53,10 @@ namespace Drakengard3Mod.NPCs
         public override bool CanTownNPCSpawn(int numTownNPCs)
         {
             int soulType = ModContent.ItemType<ReincarnationSoul>();
-            for(int i = 0; i < Main.maxPlayers; i++)
+            for (int i = 0; i < Main.maxPlayers; i++)
             {
                 Player player = Main.player[i];
-                if (player !=null && player.active && player.HasItem(soulType))
+                if (player != null && player.active && player.HasItem(soulType))
                 {
                     return true;
                 }
@@ -123,17 +127,75 @@ namespace Drakengard3Mod.NPCs
         public override void AddShops()
         {
             var npcShop = new NPCShop(Type);
-            npcShop.Add(ItemID.WoodenArrow);
-            npcShop.Add(ItemID.WoodenBow);
-            npcShop.Add(ItemID.TinBow);
-            npcShop.Add(ModContent.ItemType<AtonementRag>());
-            npcShop.Add(ModContent.ItemType<OneChakramItem>());
-            npcShop.Add(ModContent.ItemType<OneCosAWig>());
-            npcShop.Add(ModContent.ItemType<OneCosACoat>());
-            npcShop.Add(ModContent.ItemType<OneCosABoots>());
-            npcShop.Add(ModContent.ItemType<OneCosBWig>());
-            npcShop.Add(ModContent.ItemType<OneCosBCoat>());
-            npcShop.Add(ModContent.ItemType<OneCosBBoots>());
+            //costume
+            npcShop.Add(new Item(ModContent.ItemType<OneCosAWig>())
+            {
+                shopCustomPrice = 10,
+                shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
+            });
+            npcShop.Add(new Item(ModContent.ItemType<OneCosACoat>())
+            {
+                shopCustomPrice = 10,
+                shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
+            });
+            npcShop.Add(new Item(ModContent.ItemType<OneCosABoots>())
+            {
+                shopCustomPrice = 10,
+                shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
+            });
+            npcShop.Add(new Item(ModContent.ItemType<OneCosBWig>())
+            {
+                shopCustomPrice = 10,
+                shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
+            });
+            npcShop.Add(new Item(ModContent.ItemType<OneCosBCoat>())
+            {
+                shopCustomPrice = 10,
+                shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
+            });
+            npcShop.Add(new Item(ModContent.ItemType<OneCosBBoots>())
+            {
+                shopCustomPrice = 10,
+                shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
+            });
+
+            //weapons
+            npcShop.Add(new Item(ModContent.ItemType<OneChakramItem>())
+            {
+                shopCustomPrice = 100,
+                shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
+            });
+            npcShop.Add(new Item(ModContent.ItemType<SoulCalibur>())
+            {
+                shopCustomPrice = 10,
+                shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
+            });
+
+            //summons
+            npcShop.Add(new Item(ModContent.ItemType<OneEarring>())
+            {
+                shopCustomPrice = 100,
+                shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
+            });
+            npcShop.Add(new Item(ModContent.ItemType<GabriellaEgg>())
+            {
+                shopCustomPrice = 500,
+                shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
+            });
+
+            //Pots
+            npcShop.Add(new Item(ModContent.ItemType<AngelProtectionPotion>())
+            {
+                shopCustomPrice = 10,
+                shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
+            });
+
+            //zakka
+            npcShop.Add(new Item(ModContent.ItemType<AtonementRag>())
+            {
+                shopCustomPrice = 10,
+                shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
+            });
             npcShop.Register();
         }
 

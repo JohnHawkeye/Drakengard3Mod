@@ -50,6 +50,8 @@
     "Items\\EvilsAlter.cs": "Drakengard3Mod.Items",
     "Tiles\\EvilsAltarTile.cs": "Drakengard3Mod.Tiles",
     "Projectiles\\BioBombProjectile.cs": "Drakengard3Mod.Projectiles",
-    "Items\\BioBombItem.cs": "Drakengard3Mod.Items"
+    "Items\\BioBombItem.cs": "Drakengard3Mod.Items",
+    "Systems\\ReincarnationCurrencySystem.cs": "Drakengard3Mod.Systems",
+    "Currencies\\ReincarnationCurrency.cs": "Drakengard3Mod.Currencies"
   }
 }

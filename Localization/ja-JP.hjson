@@ -1,4 +1,7 @@
 Mods.Drakengard3Mod: {
+	Currency: {
+		ReincarnationSoul: "輪廻の魂"
+	}
 	Buffs: {
 		AngelProtectionBuff: {
 			DisplayName: "天使の加護"

@@ -6,7 +6,6 @@ namespace Drakengard3Mod.Items
 {
     public class ReincarnationSoul : ModItem
     {
-
         public override void SetDefaults()
         {
             Item.width = 20;
