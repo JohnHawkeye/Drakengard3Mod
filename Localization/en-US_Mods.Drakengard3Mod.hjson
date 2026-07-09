@@ -127,6 +127,11 @@ Items: {
 		DisplayName: Soul Punisher
 		Tooltip: ""
 	}
+
+	SoulStaff: {
+		DisplayName: Soul Staff
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -248,6 +253,8 @@ Projectiles: {
 	ZeroIntroEffect.DisplayName: Zero Intro Effect
 	SoulBurstSlash.DisplayName: Soul Burst Slash
 	SoulMissile.DisplayName: Soul Missile
+	SoulMagic.DisplayName: Soul Magic
+	SoulMagicBlast.DisplayName: Soul Magic Blast
 }
 
 Tiles.EvilsAltarTile.MapEntry: Evils Altar Tile

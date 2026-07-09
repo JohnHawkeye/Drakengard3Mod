@@ -195,6 +195,11 @@ namespace Drakengard3Mod.NPCs
                 shopCustomPrice = 100,
                 shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
             });
+            npcShop.Add(new Item(ModContent.ItemType<SoulStaff>())
+            {
+                shopCustomPrice = 100,
+                shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
+            });
 
             //summons
             npcShop.Add(new Item(ModContent.ItemType<OneEarring>())

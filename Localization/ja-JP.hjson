@@ -102,7 +102,10 @@ Mods.Drakengard3Mod: {
 			DisplayName: "ソウルパニッシャー"
 			Tooltip: "左クリックで持っている矢を放つ。\n右クリックで輪廻の魂を使用して追尾性能のある魂の矢を放つ。"
 		}
-
+		SoulStaff: {
+			DisplayName: "ソウルスタッフ"
+			Tooltip: "左クリックで攻撃。\n右クリックで輪廻の魂を使用して速度低下のデバフを持った魂を放つ。"
+		}
 		ZeroFlower: {
 			DisplayName: "ゼロの花"
 			Tooltip: "すべてはこれから始まった。\n使用してゼロと戦おう。"

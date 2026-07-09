@@ -67,6 +67,9 @@
     "Systems\\BloodGaugeUISystem.cs": "Drakengard3Mod.Systems",
     "Items\\Weapons\\SoulBurstSlash.cs": "Drakengard3Mod.Items.Weapons",
     "Items\\Weapons\\SoulPunisher.cs": "Drakengard3Mod.Items.Weapons",
-    "Projectiles\\SoulMissile.cs": "Drakengard3Mod.Projectiles"
+    "Projectiles\\SoulMissile.cs": "Drakengard3Mod.Projectiles",
+    "Items\\Weapons\\SoulStaff.cs": "Drakengard3Mod.Items.Weapons",
+    "Projectiles\\SoulMagic.cs": "Drakengard3Mod.Projectiles",
+    "Projectiles\\SoulMagicBlast.cs": "Drakengard3Mod.Projectiles"
   }
 }

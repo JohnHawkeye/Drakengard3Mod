@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Drakengard3Mod")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+610fb6535890aa5bc58b9d2d9af761931a840d48")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2bf7aa252b642da79da0300c9ed164b9b1b762b7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Drakengard3Mod")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Drakengard3Mod")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
