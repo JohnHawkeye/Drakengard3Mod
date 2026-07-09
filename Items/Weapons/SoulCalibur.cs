@@ -8,7 +8,7 @@ namespace Drakengard3Mod.Items.Weapons
 {
     public class SoulCalibur : ModItem
     {
-        private const int NormalDamage = 120;
+        private const int NormalDamage = 40;
 
         public override void SetStaticDefaults()
         {
@@ -48,7 +48,7 @@ namespace Drakengard3Mod.Items.Weapons
                 if (!player.HasItem(ModContent.ItemType<ReincarnationSoul>()))
                     return false;
 
-                Item.damage = NormalDamage * 3;
+                Item.damage = 60;
             }
             else
             {
@@ -62,6 +62,22 @@ namespace Drakengard3Mod.Items.Weapons
         {
             if (player.altFunctionUse == 2)
             {
+                Vector2 direction = Main.MouseWorld - player.Center;
+                direction.Normalize();
+
+                Vector2 velocity = direction * 24f;
+
+                int p = Projectile.NewProjectile(
+                    player.GetSource_ItemUse(Item),
+                    player.Center,
+                    velocity,
+                    ModContent.ProjectileType<Projectiles.SoulBurstSlash>(),
+                    60,
+                    2f,
+                    player.whoAmI);
+
+                Main.projectile[p].rotation = velocity.ToRotation();
+                    
                 player.ConsumeItem(
                     ModContent.ItemType<ReincarnationSoul>()
                 );

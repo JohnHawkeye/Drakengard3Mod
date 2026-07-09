@@ -48,7 +48,7 @@ namespace Drakengard3Mod.NPCs
         // 名前
         public override string GetChat()
         {
-            return "元気？私はいつも元気だよ！";
+            return "ワンお姉さまと一緒なの？\n羨ましいですわ。";
         }
     }
 }

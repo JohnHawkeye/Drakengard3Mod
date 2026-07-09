@@ -122,6 +122,11 @@ Items: {
 		DisplayName: Acoord Phone
 		Tooltip: ""
 	}
+
+	SoulPunisher: {
+		DisplayName: Soul Punisher
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -239,6 +244,10 @@ Projectiles: {
 	GabriellaMinion.DisplayName: Gabriella Minion
 	LoveHeart.DisplayName: Love Heart
 	BioBombProjectile.DisplayName: Bio Bomb Projectile
+	BloodPickupProjectile.DisplayName: Blood Pickup Projectile
+	ZeroIntroEffect.DisplayName: Zero Intro Effect
+	SoulBurstSlash.DisplayName: Soul Burst Slash
+	SoulMissile.DisplayName: Soul Missile
 }
 
 Tiles.EvilsAltarTile.MapEntry: Evils Altar Tile

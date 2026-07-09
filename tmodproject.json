@@ -59,6 +59,14 @@
     "NPCs\\Five.cs": "Drakengard3Mod.NPCs",
     "NPCs\\Acoord.cs": "Drakengard3Mod.NPCs",
     "Items\\AcoordPhone.cs": "Drakengard3Mod.Items",
-    "NPCs\\GenericTownProfile.cs": "Drakengard3Mod.NPCs"
+    "NPCs\\GenericTownProfile.cs": "Drakengard3Mod.NPCs",
+    "Players\\DODPlayer.cs": "Drakengard3Mod.Players",
+    "UI\\BloodGaugeSystem.cs": "Drakengard3Mod.UI",
+    "Projectiles\\BloodPickupProjectile.cs": "Drakengard3Mod.Projectiles",
+    "Systems\\MusicSystem.cs": "Drakengard3Mod.Systems",
+    "Systems\\BloodGaugeUISystem.cs": "Drakengard3Mod.Systems",
+    "Items\\Weapons\\SoulBurstSlash.cs": "Drakengard3Mod.Items.Weapons",
+    "Items\\Weapons\\SoulPunisher.cs": "Drakengard3Mod.Items.Weapons",
+    "Projectiles\\SoulMissile.cs": "Drakengard3Mod.Projectiles"
   }
 }

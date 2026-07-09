@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Drakengard3Mod.Projectiles;
 
 namespace Drakengard3Mod.GlobalNPCs
 {
@@ -10,11 +11,44 @@ namespace Drakengard3Mod.GlobalNPCs
         public override void HitEffect(NPC npc, NPC.HitInfo hit)
         {
             // 街NPCには適用しない
-            if (npc.townNPC)
+            //if (npc.townNPC)
+            //    return;
+
+            Player player = Main.player[Main.myPlayer];
+
+            if (npc.type == NPCID.TargetDummy)
                 return;
 
-            // ===== 攻撃時の血しぶき =====
+            Vector2[] directions =
+            {
+                new Vector2( 0,-1),
+                new Vector2( 1,-1),
+                new Vector2( 1, 0),
+                new Vector2( 1, 1),
+                new Vector2( 0, 1),
+                new Vector2(-1, 1),
+                new Vector2(-1, 0),
+                new Vector2(-1,-1)
+            };
 
+            foreach (Vector2 dir in directions)
+            {
+                Vector2 velocity = dir;
+                velocity = velocity.RotatedBy(MathHelper.ToRadians(Main.rand.NextFloat(-15f, 15f)));
+                velocity *= Main.rand.NextFloat(4.5f, 6.5f);
+
+                Projectile.NewProjectile(
+                    npc.GetSource_OnHit(npc),
+                    npc.Center,
+                    velocity,
+                    ModContent.ProjectileType<BloodPickupProjectile>(),
+                    0,
+                    0f,
+                    Main.myPlayer
+                );
+            }
+
+            // ===== 攻撃時の血しぶき =====
             int bloodAmount = Utils.Clamp(hit.Damage / 8, 3, 25);
 
             for (int i = 0; i < bloodAmount; i++)

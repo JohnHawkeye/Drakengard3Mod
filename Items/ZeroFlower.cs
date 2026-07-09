@@ -45,7 +45,7 @@ namespace Drakengard3Mod.Items
                 int distanceBlocks = 26;
                 int distancePixels = distanceBlocks * 16;
                 int spawnX = (int)playerPos.X + direction * distancePixels;
-                int spawnY = (int)playerPos.Y - 40*16;
+                int spawnY = (int)playerPos.Y - 384;
 
                 NPC.NewNPC(player.GetSource_ItemUse(Item),
                     spawnX, spawnY,

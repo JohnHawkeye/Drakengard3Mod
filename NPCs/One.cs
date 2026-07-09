@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -8,6 +9,9 @@ using Drakengard3Mod.Currencies;
 using Drakengard3Mod.Systems;
 using Drakengard3Mod.Items.Weapons;
 using Drakengard3Mod.Items.Summons;
+using Microsoft.Xna.Framework;
+using Drakengard3Mod.Buffs;
+using Drakengard3Mod.Projectiles;
 //test
 namespace Drakengard3Mod.NPCs
 {
@@ -49,7 +53,44 @@ namespace Drakengard3Mod.NPCs
             AnimationType = NPCID.Guide;
 
         }
+        public override void AI()
+        {
+            foreach (Player player in Main.ActivePlayers)
+            {
+                if (!player.active || player.dead)
+                    continue;
 
+                // プレイヤーとの距離
+                float xDist = Math.Abs(player.Center.X - NPC.Center.X);
+                float yDist = Math.Abs(player.Center.Y - NPC.Center.Y);
+
+                if (xDist < 48f && yDist < 24f)
+                {
+                    // ラブラブなハートを出す
+                    if (Main.rand.NextBool(40))
+                    {
+                        Vector2 pos = NPC.Center +
+                            new Vector2(
+                                Main.rand.NextFloat(-8f, 8f),
+                                -24f);
+
+                        Projectile.NewProjectile(
+                            NPC.GetSource_FromAI(),
+                            pos,
+                            new Vector2(
+                                Main.rand.NextFloat(-1f, 1f),
+                                -0.5f),
+                            ModContent.ProjectileType<LoveHeart>(),
+                            0,
+                            0f,
+                            Main.myPlayer);
+                    }
+
+                    // バフ付与
+                    player.AddBuff(ModContent.BuffType<OneLoveBuff>(), 2);
+                }
+            }
+        }
         public override bool CanTownNPCSpawn(int numTownNPCs)
         {
             int soulType = ModContent.ItemType<ReincarnationSoul>();
@@ -141,12 +182,17 @@ namespace Drakengard3Mod.NPCs
             //weapons
             npcShop.Add(new Item(ModContent.ItemType<OneChakramItem>())
             {
-                shopCustomPrice = 100,
+                shopCustomPrice = 10,
                 shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
             });
             npcShop.Add(new Item(ModContent.ItemType<SoulCalibur>())
             {
-                shopCustomPrice = 10,
+                shopCustomPrice = 100,
+                shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
+            });
+            npcShop.Add(new Item(ModContent.ItemType<SoulPunisher>())
+            {
+                shopCustomPrice = 100,
                 shopSpecialCurrency = ReincarnationCurrencySystem.CurrencyID
             });
 

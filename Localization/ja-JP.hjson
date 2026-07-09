@@ -98,6 +98,10 @@ Mods.Drakengard3Mod: {
 			DisplayName: "ソウルキャリバー"
 			Tooltip: "左クリックで通常攻撃。\n右クリックで輪廻の魂を使用して3倍のダメージを与える。"
 		}
+		SoulPunisher: {
+			DisplayName: "ソウルパニッシャー"
+			Tooltip: "左クリックで持っている矢を放つ。\n右クリックで輪廻の魂を使用して追尾性能のある魂の矢を放つ。"
+		}
 
 		ZeroFlower: {
 			DisplayName: "ゼロの花"
@@ -129,19 +133,21 @@ Mods.Drakengard3Mod: {
 
 		One: {
 			DisplayName: "ワン姉さん"
-
-			TownNPCMood: {
-				Content: 君がいないと不安になる。
-				NoHome: 家があると安心する。
-				FarFromHome: 家から遠すぎる。
-				LoveSpace: 充分なスペースが あるのがいいね。
-				DislikeCrowded: 静かなのが好き。
-				HateCrowded: 騒々しいのは嫌いだ。
-				LikeNPC_Princess: I like {NPCName}.
-				Princess_LovesNPC: I like {NPCName}.
-			}
-
-			Census.SpawnCondition: Conditions unknown
+		}
+		Two: {
+			DisplayName: "トウ"
+		}
+		Three: {
+			DisplayName: "スリイ"
+		}
+		Foul: {
+			DisplayName: "フォウ"
+		}
+		Five: {
+			DisplayName: "ファイブ"
+		}
+		Acoord: {
+			DisplayName: "アコール"
 		}
 	}
 
